@@ -189,6 +189,12 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- don't overwrite register on visual paste
+vim.keymap.set('v', 'p', 'P', { noremap = true })
+
+-- quickfix nav
+vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>', { desc = 'Go to next in quickfix list' })
+vim.keymap.set('n', '<M-k>', '<cmd>cprevious<CR>', { desc = 'Go to next in quickfix list' })
 
 vim.keymap.set('n', '<leader>ha', function()
   require('harpoon.mark').add_file()
@@ -228,6 +234,8 @@ vim.keymap.set('n', '<leader>0', function()
 end, { desc = 'harpoon 10' })
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic' })
+
+vim.keymap.set('n', '-', '<CMD>Oil --float<CR>', { desc = 'Open parent directory' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -1029,6 +1037,14 @@ require('lazy').setup({
     },
   },
 })
+
+require('oil').setup {
+  float = {
+    --    max_width = 100,
+    --    max_height = 50,
+    padding = 10,
+  },
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
