@@ -98,6 +98,8 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+vim.opt.tabstop = 4
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -193,7 +195,9 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('v', 'p', 'P', { noremap = true })
 
 -- quickfix nav
+vim.keymap.set('n', '<D-j>', '<cmd>cnext<CR>', { desc = 'Go to next in quickfix list' })
 vim.keymap.set('n', '<M-j>', '<cmd>cnext<CR>', { desc = 'Go to next in quickfix list' })
+vim.keymap.set('n', '<D-k>', '<cmd>cprevious<CR>', { desc = 'Go to next in quickfix list' })
 vim.keymap.set('n', '<M-k>', '<cmd>cprevious<CR>', { desc = 'Go to next in quickfix list' })
 
 vim.keymap.set('n', '<leader>ha', function()
@@ -679,12 +683,10 @@ require('lazy').setup({
         ts_ls = {},
         zls = {},
         templ = {},
-        html = {
-          filetypes = { 'html', 'templ' },
-        },
         htmx = {
           filetypes = { 'html', 'templ' },
         },
+
         tailwindcss = {
           filetypes = { 'templ', 'astro', 'javascript', 'typescript', 'react' },
           settings = {
